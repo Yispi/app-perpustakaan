@@ -8,13 +8,20 @@ use App\Models\Category;
 use App\Http\Requests\StoreBookRequest;
 class BookController extends Controller
 {
+// File: app/Http/Controllers/BookController.php
 public function index()
 {
-    $books = Book::paginate(10);
+    $books = Book::with('category')->paginate(10);
 
     return view('books.index', compact('books'));
 }
 
+public function show(string $id)
+{
+    $book = Book::with('category')->findOrFail($id);
+
+    return view('books.show', compact('book'));
+}
 public function create()
 {
     $categories = Category::all();
@@ -32,12 +39,6 @@ public function store(StoreBookRequest $request)
         ->with('success', 'Buku berhasil ditambahkan.');
 }
 
-public function show(string $id)
-{
-    $book = Book::findOrFail($id);
-
-    return view('books.show', compact('book'));
-}
 
 public function edit(string $id)
 {
