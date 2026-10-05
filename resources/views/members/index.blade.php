@@ -1,4 +1,15 @@
-{{-- File: resources/views/members/index.blade.php --}}
+<form action="{{ route('members.index') }}" method="GET">
+    <input
+        type="text"
+        name="search"
+        placeholder="Cari nama anggota..."
+        value="{{ request('search') }}"
+    >
+
+    <button type="submit">Cari</button>
+
+    <a href="{{ route('members.index') }}">Reset</a>
+</form>
 @extends('layouts.app')
 
 @section('title', 'Daftar Anggota')
