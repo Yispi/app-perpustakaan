@@ -18,7 +18,7 @@ public function index()
 
 public function show(string $id)
 {
-    $book = Book::with('category')->findOrFail($id);
+    $book = Book::with('category') ->findOrFail($id);
 
     return view('books.show', compact('book'));
 }
