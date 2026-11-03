@@ -34,8 +34,6 @@ public function create()
 
     return view('loans.create', compact('members', 'books'));
 }
-    // File: app/Http/Controllers/LoanController.php
-// File: app/Http/Controllers/LoanController.php
 public function store(Request $request)
 {
     $validated = $request->validate([
@@ -53,8 +51,6 @@ public function store(Request $request)
         'tanggal_kembali' => $validated['tanggal_kembali'],
     ]);
 
-    // ...
-}
     foreach ($validated['book_ids'] as $bookId) {
         $loan->loanItems()->create(['book_id' => $bookId]);
     }
